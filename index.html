@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weatherly</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="wrap-1">
+        <div class="container">
+            <header class="row blur">
+                <div class="col-4">
+                    <h1><span class="fa fas fa-cloud"></span>WEATHERLY</h1>
+                </div>
+                <div class="col-3"></div>
+                <div class="col-5 flex">
+                    <form action="/" name="weather">
+                        <input type="text" name="city_name" id="city_name" placeholder="Enter a city(Ex: Delhi)">
+                        <button class="btn">Search</button>
+                    </form>
+                </div>
+            </header>
+        </div>
+    </div>
+    <div class="wrap-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-11 blur">
+                            <h2>VISIBILITY : <span id="visibility"></span></h2>
+                            <h2>HUMIDITY : <span id="humidity"></span></h2>
+                            <h2>PRESSURE : <span id="pressure"></span></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-11 blur">
+                            <h2>LONGITUDE : <span id="longitude"></span></h2>
+                            <h2>LATITUDE : <span id="latitude"></span></h2>
+                            <h2>WINDSPEED : <span id="windspeed"></span></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-2 blur">
+                    <h2>SUNRISE</h2>
+                    <span id="sunrise"></span>
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10 blur">
+                            <h2>TEMPERATURE : <span id="temperature"></span></h2>
+                            <h2>FEELS LIKE : <span id="feels_like"></span></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 blur">
+                    <h2>SUNSET</h2>
+                    <span id="sunset"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="broadcast"><span class="place"></span>Expected weather: <span class="dynamic"></span> today.</p>
+    <script>
+        'use strict';
+        
+        document.weather.addEventListener('submit',function(e){
+            e.preventDefault();
+            let city_name=document.querySelector('#city_name').value;
+            // let url="./msg.json";
+            let url=`https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=e11e04625ffaa9047c0a5b7f98c962bc`;
+            fetch(url).then(i=>i.json()).then(i=>{
+                let sunrise=new Date((i.sys.sunrise)*1000);
+                let sunset=new Date((i.sys.sunset)*1000);
+                document.querySelector("#visibility").innerHTML=i.visibility;
+                document.querySelector("#humidity").innerHTML=i.main.humidity;
+                document.querySelector("#pressure").innerHTML=i.main.pressure;
+                document.querySelector("#longitude").innerHTML=i.coord.lon;
+                document.querySelector("#latitude").innerHTML=i.coord.lat;
+                document.querySelector("#windspeed").innerHTML=(i.wind.speed).toFixed(2);
+                document.querySelector("#sunrise").innerHTML=`${sunrise.getHours()}:${sunrise.getMinutes()}:${sunrise.getSeconds()}`+" AM";
+                document.querySelector("#sunset").innerHTML=`${sunset.getHours()}:${sunset.getMinutes()}:${sunset.getSeconds()}`+" PM";
+                document.querySelector("#temperature").innerHTML=(i.main.temp/10).toFixed(2);
+                document.querySelector("#feels_like").innerHTML=(i.main.feels_like/10).toFixed(2);
+                document.querySelector(".dynamic").innerHTML=i.weather[0].description;
+                document.querySelector(".broadcast").style="display:block";
+                document.querySelector(".place").innerHTML=`\(${i.name}) `;
+            })
+        });
+    </script>
+</body>
+</html>
