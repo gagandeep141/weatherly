@@ -11,10 +11,10 @@
     <div class="wrap-1">
         <div class="container">
             <header class="row blur">
-                <div class="col-5 padding-10 col-mp-12">
+                <div class="col-5 padding-10 col-mp-12 text-center-ml">
                     <h1><span class="fa fas fa-cloud"></span>WEATHERLY</h1>
                 </div>
-                <div class="col-7 flex justify-right padding-10 col-mp-12">
+                <div class="col-7 flex justify-right padding-10 col-mp-12 flex-center-ml">
                     <form action="/" name="weather" class="flex align-center">
                         <div class="flex justify-right">
                             <input type="text" name="city_name" id="city_name" placeholder="Enter a city(Ex: Delhi)">
@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-11 col-ml-12">
                             <div class="blur">
-                                <h2>VISIBILITY : <span id="visibility"></span></h2>
+                            <h2>VISIBILITY : <span id="visibility"></span></h2>
                             <h2>HUMIDITY : <span id="humidity"></span></h2>
                             <h2>PRESSURE : <span id="pressure"></span></h2>
                             </div>
@@ -57,27 +57,35 @@
     <div class="wrap-3">
         <div class="container">
             <div class="row">
-                <div class="col-8 col-ml-6 col-mp-12 margin-bottom-20">
+                <div class="col-6 col-ml-12 col-mp-12 margin-bottom-20">
                     <div class="row">
-                        <div class="col-1 collapse"></div>
-                        <div class="col-10 col-ml-12">
+                        <div class="col-11 col-ml-12">
                             <div class="blur">
                                 <h2>TEMPERATURE : <span id="temperature"></span></h2>
-                            <h2>FEELS LIKE : <span id="feels_like"></span></h2>
+                                <h2>FEELS LIKE : <span id="feels_like"></span></h2>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-2 col-ml-3 col-mp-6">
-                    <div class="blur">
-                        <h2>SUNRISE</h2>
-                    <span id="sunrise"></span>
+                <div class="col-6 col-ml-12 col-mp-12">
+                    <div class="row">
+                        <div class="col-1 collapse"></div>
+                    <div class="col-11 col-ml-12">
+                        <div class="row">
+                            <div class="col-6 col-ml-6 col-mp-6 text-center">
+                                <div class="blur">
+                                    <h2>SUNRISE</h2>
+                                <span id="sunrise"></span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-ml-6 col-mp-6 text-center">
+                                <div class="blur">
+                                    <h2>SUNSET</h2>
+                                <span id="sunset"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-2 col-ml-3 col-mp-6">
-                    <div class="blur">
-                        <h2>SUNSET</h2>
-                    <span id="sunset"></span>
                     </div>
                 </div>
             </div>
